@@ -20,6 +20,6 @@ class Routes {
     @Bean
     @ConditionalOnBean(DebitService::class)
     fun debitRouter(handler: Handler) = router {
-        POST("/debit", handler::credit)
+        POST("/debit", handler::debit)
     }
 }
