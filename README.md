@@ -11,7 +11,7 @@
 #### `lib` project includes:
 * Optional routes config (see `com.illenko.payment.lib.api.Routes`).
 * Internal API model (`com.illenko.payment.lib.api.request/response` packages).
-* Handler with optional dependencies on services (`com.illenko.payment.lib.api.handler.Handler`).
+* Handlers (`com.illenko.payment.lib.api.handler`).
 * Services interfaces (`com.illenko.payment.lib.api.service`)
 * Enums, etc.
 
@@ -20,18 +20,15 @@
 * Defines `lib` as dependency, see `build.gradle.kts` (`implementation("com.illenko.payment:lib:$paymentLibVersion")`)
 * Implement only one of 2 services, defined in `lib` (`com.illenko.payment.paypalintegration.service.CreditServiceImpl`), it makes only `/credit` endpoint enabled, because of `@ConditionalOnBean` annotation used in `lib.Routes`.
 
-
 ---
 Please note, if you want to add any new endpoints with new request/response model and build your service in native image, additional info must be added to handler level, to add required info to native executable, see:
 ```kotlin
 @Component
 @RegisterReflectionForBinding(
     InternalCreditRequest::class,
-    InternalDebitRequest::class,
     InternalCreditResponse::class,
-    InternalDebitResponse::class
 )
-class Handler {
+class CreditHandler {
     //
 }
 ```

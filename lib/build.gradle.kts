@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.illenko.payment"
-version = "0.0.5-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 val kotlinLoggingVersion: String by project
 
